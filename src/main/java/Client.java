@@ -65,13 +65,15 @@ public class Client {
 	 * @param nom Nom
 	 * @param prenom Prénom
 	 * @param dateNaissance Date de naissance
+	 * @param adresse Adresse
 	 * @param banque Banque
 	 */
-	public Client(String nom, String prenom, LocalDate dateNaissance, Banque banque) {
+	public Client(String nom, String prenom, LocalDate dateNaissance, Adresse adresse, Banque banque) {
 		super();
 		this.nom = nom;
 		this.prenom = prenom;
 		this.dateNaissance = dateNaissance;
+		this.adresse = adresse;
 		this.banque = banque;
 	}
 

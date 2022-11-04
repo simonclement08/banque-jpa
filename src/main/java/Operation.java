@@ -1,17 +1,21 @@
-import java.util.Date;
+import java.time.LocalDateTime;
 
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
+import javax.persistence.Inheritance;
+import javax.persistence.InheritanceType;
 import javax.persistence.JoinColumn;
 import javax.persistence.ManyToOne;
 import javax.persistence.Table;
-import javax.persistence.Temporal;
-import javax.persistence.TemporalType;
 
+/**
+ * Peut représenté une opération de type Virement
+ */
 @Entity
+@Inheritance(strategy = InheritanceType.JOINED)
 @Table(name = "OPERATION")
 public class Operation {
 
@@ -23,8 +27,7 @@ public class Operation {
 
 	/** Date */
 	@Column(name = "DATE", nullable = false)
-	@Temporal(TemporalType.TIMESTAMP)
-	private Date date;
+	private LocalDateTime date;
 
 	/** Montant */
 	@Column(name = "MONTANT", nullable = false)
@@ -45,12 +48,12 @@ public class Operation {
 	/**
 	 * Constructeur
 	 *
-	 * @param solde Solde
+	 * @param solde  Solde
 	 * @param compte Compte
 	 */
 	public Operation(double montant, Compte compte) {
 		super();
-		this.date = new Date();
+		this.date = LocalDateTime.now();
 		this.montant = montant;
 		this.compte = compte;
 	}
@@ -78,7 +81,7 @@ public class Operation {
 	 *
 	 * @return the date
 	 */
-	public Date getDate() {
+	public LocalDateTime getDate() {
 		return date;
 	}
 
@@ -87,7 +90,7 @@ public class Operation {
 	 *
 	 * @param date the date to set
 	 */
-	public void setDate(Date date) {
+	public void setDate(LocalDateTime date) {
 		this.date = date;
 	}
 
